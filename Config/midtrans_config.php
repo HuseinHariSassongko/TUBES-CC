@@ -2,19 +2,22 @@
 // File: Config/midtrans_config.php
 // Midtrans Configuration - SANDBOX MODE
 
-// Midtrans Credentials - SANDBOX (untuk testing)
-define('MIDTRANS_SERVER_KEY', 'Mid-server-0EphlkeSMfvsmTWjmgKvnMye');
-define('MIDTRANS_CLIENT_KEY', 'Mid-client-OxadXOtHQQY8YXpe');
+require_once __DIR__ . '/../vendor/autoload.php';
 
-// Environment - SANDBOX MODE (Testing dengan uang palsu)
-define('MIDTRANS_IS_PRODUCTION', false); // false = sandbox/testing
+// ===============================
+// KONFIGURASI MIDTRANS (SANDBOX)
+// ===============================
 
-// Snap URL - Sandbox
-define('MIDTRANS_SNAP_URL', MIDTRANS_IS_PRODUCTION 
-    ? 'https://app.midtrans.com/snap/snap.js' 
-    : 'https://app.sandbox.midtrans.com/snap/snap.js'
+// WAJIB: isi via .env saat local, via server saat deploy
+\Midtrans\Config::$serverKey = getenv('MIDTRANS_SERVER_KEY') ?: '';
+\Midtrans\Config::$isProduction = getenv('MIDTRANS_IS_PRODUCTION') === 'false';
+\Midtrans\Config::$isSanitized = true;
+\Midtrans\Config::$is3ds = true;
+
+// Snap URL helper
+define(
+    'MIDTRANS_SNAP_URL',
+    \Midtrans\Config::$isProduction
+        ? 'https://app.midtrans.com/snap/snap.js'
+        : 'https://app.sandbox.midtrans.com/snap/snap.js'
 );
-
-// Notification URL (untuk webhook callback)
-define('MIDTRANS_NOTIFICATION_URL', 'http://localhost/TUBES%20CC/api/midtrans_notification.php');
-?>
