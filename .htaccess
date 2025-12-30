@@ -1,0 +1,32 @@
+# Enable URL Rewriting
+RewriteEngine On
+
+# Set base directory (adjust if needed)
+RewriteBase /TUBES%20CC/
+
+# If file exists, serve it directly
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# If directory exists, serve it directly
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Otherwise, route to index.php
+RewriteRule ^(.*)$ index.php?page=$1 [QSA,L]
+
+# Prevent directory listing
+Options -Indexes
+
+# Set default charset
+AddDefaultCharset UTF-8
+
+# Prevent access to sensitive files
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Block access to config files
+<FilesMatch "(database\.php|\.htaccess)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>

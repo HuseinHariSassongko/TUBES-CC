@@ -1,0 +1,38 @@
+/* Custom Styles for Telur Josjis */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.btn {
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.badge-premium {
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    color: white;
+    font-weight: bold;
+}
+
+.badge-basic {
+    background: #6c757d;
+    color: white;
+}
